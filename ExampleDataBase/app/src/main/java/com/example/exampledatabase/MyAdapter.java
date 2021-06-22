@@ -17,6 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.exampledatabase.RDB.RTable;
 
 import java.util.List;
+//to get all the properties we are getting the adapter features from recycler view.
+//recycler view------is a view holder,
+//list view data can be displayed but cannot hold he data easily
+//inflating---java class and xml file to connect them adding those both.
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.HoldView> {
     Context ct;
@@ -30,8 +34,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.HoldView> {
     @NonNull
     @Override
     public HoldView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //create
         return new HoldView(LayoutInflater.from(ct)
                 .inflate(R.layout.row,parent,false));
+        //attachto root should be false only
     }
 
     @Override
@@ -45,6 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.HoldView> {
                 MainActivity.rViewModel.delete(list.get(position));
                 Toast.makeText(ct, "Data Deleted",
                         Toast.LENGTH_SHORT).show();
+                //creating custom dialogue
             }
         });
         holder.edit.setOnClickListener(new View.OnClickListener() {
@@ -58,10 +65,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.HoldView> {
                 EditText phone = view.findViewById(R.id.uphone);
 
                 b.setView(view);
-                b.setCancelable(false);
+                b.setCancelable(false);//popups if we tap on any screen it doesn't close it
 
                 roll.setText(list.get(position).getSroll());
-                roll.setEnabled(false);
+                roll.setEnabled(false);//we cannot change roll number as it is rimary key unique
                 name.setText(list.get(position).getSname());
                 phone.setText(list.get(position).getSnumber());
 
@@ -90,7 +97,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.HoldView> {
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount() {//how much should be displayed
         return list.size();
     }
 

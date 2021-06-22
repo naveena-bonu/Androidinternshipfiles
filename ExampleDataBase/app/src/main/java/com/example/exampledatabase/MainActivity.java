@@ -33,10 +33,12 @@ public class MainActivity extends AppCompatActivity {
         num = findViewById(R.id.phone);
         rv = findViewById(R.id.rv);
         rViewModel = new ViewModelProvider(this).get(RViewModel.class);
+        ////To read the data we need to use observer
         rViewModel.readData().observe(this, new Observer<List<RTable>>() {
             @Override
             public void onChanged(List<RTable> rTables) {
                 list = rTables;
+                //ctr+space we get suggestions
                 MyAdapter adapter = new MyAdapter(MainActivity.this,rTables);
                 rv.setAdapter(adapter);
                 rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
